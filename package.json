@@ -1,5 +1,5 @@
 {
-  "name": "neochic/responsive-background-image",
+  "name": "@neochic/responsive-background-image",
   "version": "0.1.0",
   "main": "responsive-background-image.js",
   "scripts": {
