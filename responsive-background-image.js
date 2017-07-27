@@ -127,6 +127,9 @@
                 if (mutation.addedNodes.length > 0) {
                     for (var _a = 0, _b = mutation.addedNodes; _a < _b.length; _a++) {
                         var element = _b[_a];
+                        if (element.nodeType !== Node.ELEMENT_NODE) {
+                            continue;
+                        }
                         init(element);
                         var elements_1 = element.querySelectorAll('[data-rbi]');
                         for (var _c = 0, _d = elements_1; _c < _d.length; _c++) {

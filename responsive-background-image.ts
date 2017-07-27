@@ -150,6 +150,9 @@
 
                 if (mutation.addedNodes.length > 0) {
                     for (let element of <any>mutation.addedNodes) {
+                        if (element.nodeType !== Node.ELEMENT_NODE) {
+                            continue;
+                        }
                         init(element);
                         let elements = element.querySelectorAll('[data-rbi]');
                         for (let subElement of <any>elements) {
