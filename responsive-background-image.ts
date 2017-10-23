@@ -84,6 +84,7 @@
         let match = findBestMatch(element, images);
 
         if(!match) {
+            element.removeAttribute("data-rbi");
             return;
         }
 
