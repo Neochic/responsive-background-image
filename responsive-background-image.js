@@ -18,8 +18,8 @@
             element.offsetHeight * (window.devicePixelRatio || 1)
         ];
         var match = null;
-        for (var _i = 0, images_1 = images; _i < images_1.length; _i++) {
-            var image = images_1[_i];
+        for (var _i = 0; _i < images.length; _i++) {
+            var image = images[_i];
             var widthRatio = targetSize[0] / image.width;
             var heightRatio = targetSize[1] / image.height;
             var ratio = method === "contain" ? Math.min(widthRatio, heightRatio) : Math.max(widthRatio, heightRatio);
@@ -69,6 +69,7 @@
         var images = JSON.parse(element.getAttribute('data-rbi'));
         var match = findBestMatch(element, images);
         if (!match) {
+            element.removeAttribute("data-rbi");
             return;
         }
         storedElements.push({
@@ -101,8 +102,8 @@
         }
         resizeDebouncer = window.setTimeout(function () {
             cleanUpRemovedElements();
-            for (var _i = 0, storedElements_1 = storedElements; _i < storedElements_1.length; _i++) {
-                var element = storedElements_1[_i];
+            for (var _i = 0; _i < storedElements.length; _i++) {
+                var element = storedElements[_i];
                 var match = findBestMatch(element.element, element.images);
                 if (!match) {
                     continue;
@@ -119,8 +120,8 @@
             return;
         }
         var observer = new MutationObserver(function (mutations) {
-            for (var _i = 0, mutations_1 = mutations; _i < mutations_1.length; _i++) {
-                var mutation = mutations_1[_i];
+            for (var _i = 0; _i < mutations.length; _i++) {
+                var mutation = mutations[_i];
                 if (mutation.type !== "childList") {
                     return;
                 }
