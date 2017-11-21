@@ -2,6 +2,7 @@
     let storedElements = [];
     let resizeDebouncer = null;
     let removeDebouncer = null;
+    const maxValue = 999999999999999;
 
     function getStyle(el: HTMLElement, styleProp: string) {
         return window.getComputedStyle(el, null).getPropertyValue(styleProp);
@@ -24,10 +25,10 @@
 
         let match = null;
         for (let image of images) {
-            let widthRatio = targetSize[0]/image.width;
-            let heightRatio = targetSize[1]/image.height;
+            let widthRatio = image.width > 0 ? targetSize[0] / image.width : null;
+            let heightRatio = image.height > 0 ? targetSize[1] / image.height : null;
 
-            let ratio = method === "contain" ? Math.min(widthRatio, heightRatio) : Math.max(widthRatio, heightRatio);
+            let ratio = method === "contain" ? Math.min(widthRatio || maxValue, heightRatio || maxValue) : Math.max(widthRatio || 0, heightRatio || 0);
 
             /*
              * if there is not yet another match we use it independently of how good the match is (better than nothing)
